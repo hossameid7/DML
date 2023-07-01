@@ -5,9 +5,10 @@ using UnityEngine;
 public class PlayerInput : MonoBehaviour
 {
     public static PlayerInput I;
-    public float inputZ = 0f;
-    public bool jump = false;
     public bool grounded = true;
+    public float speed = 5f;
+
+    public Rigidbody rb;
     private void Awake() {
         if(!I)I=this;
     }
@@ -15,11 +16,16 @@ public class PlayerInput : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        inputZ = Input.GetAxis("Horizontal");
 
-        jump = Input.GetButtonDown("Jump");
     }
+    private void FixedUpdate()
+    {
+        float moveHorizontal = Input.GetAxis("Horizontal");
+        float moveVertical = Input.GetAxis("Vertical");
 
+        Vector3 movement = new Vector3(moveVertical,transform.position.y,moveHorizontal);
+        rb.velocity = movement * speed;
+    }
     private void OnCollisionEnter(Collision other) {
         if(other.collider.CompareTag("Ground")){
             grounded = true;
