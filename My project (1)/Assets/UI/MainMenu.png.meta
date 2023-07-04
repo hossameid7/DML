@@ -355,6 +355,27 @@ TextureImporter:
       indices: 
       edges: []
       weights: []
+    - serializedVersion: 2
+      name: ture
+      rect:
+        serializedVersion: 2
+        x: 959
+        y: 831
+        width: 116
+        height: 95
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 28866bda511a4d34e9971caaeb20304e
+      internalID: 939046535
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     physicsShape: []
     bones: []
@@ -366,12 +387,11 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      MainMenu_19: -1952786505
+      MainMenu_21: -1590120913
       MainMenu_20: -1092535385
       MainMenu_18: -35679582
       MainMenu_23: -1179878509
       MainMenu_11: -1923186770
-      MainMenu_4: -1190229422
       MainMenu_5: -941260966
       MainMenu_15: 82625658
       MainMenu_13: 1320730446
@@ -383,14 +403,15 @@ TextureImporter:
       MainMenu_8: -210916687
       MainMenu_22: 733565499
       MainMenu_6: -609243424
+      ture: -1190229422
       MainMenu_2: -1931311774
       MainMenu_9: 904795692
       MainMenu_0: -280885686
       MainMenu_7: 1440867347
-      MainMenu_10: 2113101035
-      MainMenu_21: -1590120913
-      MainMenu_12: -1373552090
       MainMenu_24: 987830185
+      MainMenu_12: -1373552090
+      MainMenu_19: -1952786505
+      MainMenu_10: 2113101035
   spritePackingTag: 
   pSDRemoveMatte: 0
   userData: 
