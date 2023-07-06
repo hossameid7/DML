@@ -9,29 +9,32 @@ public class PauseMenu : MonoBehaviour
 
 
     [Header("Settings")]
+    public AudioListener _audioListener;
     public Slider VolveAudio;
     public Dropdown DisplayResolistion;
     private Resolution[] its_Resolution;
-    public Button TheButtonWindow,ButtonFullScreen;
-    public Image TureMark;
+  
     public bool fullScreenMode = true;
     public int NamerModeScreen;
-
-    [Space(15)]
+    
+    [Space(5)]
     public int NamberQuallity;
-    public Button Qu_Low,QuMedium,QuHight;
-    public GameObject QuTrue_Low, QuTrue_Mrdium, QuTrue_Hard;
+    public Text UIWhatQuality;
+    public GameObject NextQuallity,BackQuallity;
+    [Space(5)]
+    public int NamberDifficulty;
+    public GameObject BackDifficulty,NextDifficlty;
+    public Text UIWhatDifficulaty;
 
-    [Space(15)]
-    public int NamDifficultyLevels;
-    public Button DL_Easy, DF_Medium, DF_Hard;
-    public GameObject DL_True_Low, DL_True_Mrdium, DL_True_Hard;
-
+    [Header("GameOver And Winner")]
+    public GameObject AllMainGameOverAndLose;
+    public GameObject MainGameOver,MainWinner;
 
     void Start()
     {
 
 
+        Time.timeScale = 1;
        its_Resolution = Screen.resolutions;
        DisplayResolistion.ClearOptions();
 
@@ -60,126 +63,147 @@ public class PauseMenu : MonoBehaviour
         if(Input.GetKeyDown(KeyCode.Escape)){
             PauseGame();
         }
-        FunQuality();
+        FunSettings();
     }
 
-    public void PauseGame(){
-        isActive = !isActive;
-        Time.timeScale =(isActive == true)? 0: 1;
-
-    }
-    public void SellectQuality(int namber)
-    {
-       NamberQuallity = namber;
-       QualitySettings.SetQualityLevel(namber);
-    }
-
-    public void SellectDifficultyLevels(int _Sellect)
-    {
-        NamDifficultyLevels = _Sellect;
-    }
-     void FunQuality()
+    void FunSettings()
     {
 
-        AudioListener.volume =  VolveAudio.value;
+
+        AudioListener.volume = VolveAudio.value;
 
         if (fullScreenMode == true)
         {
             Screen.fullScreenMode = FullScreenMode.FullScreenWindow;
-            TureMark.gameObject.SetActive(true);
-            ButtonFullScreen.interactable = false;
-            TheButtonWindow.interactable = true;
         }
         else
         {
-            Screen.fullScreenMode = FullScreenMode.Windowed;
-            TureMark.gameObject.SetActive(false);
-            ButtonFullScreen.interactable = true;
-            TheButtonWindow.interactable = false;
+            Screen.fullScreenMode = FullScreenMode.Windowed;         
         }
-
-        // ــــــــــــــــ تحديد الجودة ــــــــــــــــــــــــــ
-        if(NamberQuallity ==0)
+       
+        if(NamberQuallity==0)
         {
-            Qu_Low.interactable = false;
-            QuMedium.interactable = true;
-            QuHight.interactable = true;
-
-            QuTrue_Low.SetActive(true);
-            QuTrue_Mrdium.SetActive(false);
-            QuTrue_Hard.SetActive(false);
+            NextQuallity.SetActive(true);
+            BackQuallity.SetActive(false);
+            UIWhatQuality.text ="Low";
 
         }
-        else if(NamberQuallity == 1)
+        else if(NamberQuallity==1)
         {
-            Qu_Low.interactable = true;
-            QuMedium.interactable = false;
-            QuHight.interactable = true;
+            NextQuallity.SetActive(true);
+            BackQuallity.SetActive(true);
+            UIWhatQuality.text ="Medium";
 
-            QuTrue_Low.SetActive(false);
-            QuTrue_Mrdium.SetActive(true);
-            QuTrue_Hard.SetActive(false);
         }
-        else if (NamberQuallity == 2)
+        else if(NamberQuallity==2)
         {
-            Qu_Low.interactable = true;
-            QuMedium.interactable = true;
-            QuHight.interactable = false;
+             NextQuallity.SetActive(false);
+            BackQuallity.SetActive(true);
+            UIWhatQuality.text ="Hight";
 
-            QuTrue_Low.SetActive(false);
-            QuTrue_Mrdium.SetActive(false);
-            QuTrue_Hard.SetActive(true);
         }
-
-        // ـــــــــــــــــــ صعوبة اللعب ـــــــــــــــــــــــ
-        if (NamDifficultyLevels == 0)
+    
+         if(NamberDifficulty==0)
         {
-            DL_Easy.interactable = false;
-            DF_Medium.interactable = true;
-            DF_Hard.interactable = true;
-
-            DL_True_Low.SetActive(true);
-            DL_True_Mrdium.SetActive(false);
-            DL_True_Hard.SetActive(false);
+            NextDifficlty.SetActive(true);
+            BackDifficulty.SetActive(false);
+            UIWhatDifficulaty.text ="Easy";
 
         }
-        else if (NamDifficultyLevels == 1)
+        else if(NamberDifficulty==1)
         {
-            DL_Easy.interactable = true;
-            DF_Medium.interactable = false;
-            DF_Hard.interactable = true;
-
-            DL_True_Low.SetActive(false);
-            DL_True_Mrdium.SetActive(true);
-            DL_True_Hard.SetActive(false);
+            NextDifficlty.SetActive(true);
+            BackDifficulty.SetActive(true);
+            UIWhatDifficulaty.text ="Medium";
 
         }
-        else if (NamDifficultyLevels == 2)
+        else if(NamberDifficulty==2)
         {
-            DL_Easy.interactable = true;
-            DF_Medium.interactable = true;
-            DF_Hard.interactable = false;
-
-            DL_True_Low.SetActive(false);
-            DL_True_Mrdium.SetActive(false);
-            DL_True_Hard.SetActive(true);
+           NextDifficlty.SetActive(false);
+            BackDifficulty.SetActive(true);
+            UIWhatDifficulaty.text ="Hard";
 
         }
+    
+    }
+    public void PauseGame(){
+        isActive = !isActive;
+        Time.timeScale =(isActive == true)? 0: 1;
+        _audioListener.enabled = isActive;
+    }
+   
+    int namber =0;
+    public void SellectQuality(bool Next_Back)
+    {
+        if(Next_Back ==  true)
+        {
+            namber ++;
+        }
+        else if(Next_Back ==  false)
+        {
+            namber --;
+        }
+       NamberQuallity = namber;
+       QualitySettings.SetQualityLevel(NamberQuallity);
 
+    }
+    int Nam_NamberDifficulty;
+    public void SellectDifficultyLevels(bool Next_Back)
+    {
+        if(Next_Back ==  true)
+        {
+            Nam_NamberDifficulty ++;
+        }
+        else if(Next_Back ==  false)
+        {
+            Nam_NamberDifficulty --;
+        }
+        NamberDifficulty = Nam_NamberDifficulty;
+    }
+    
+    
+    public void SetWinOrGameOver( bool _What)
+    {
+        Time.timeScale =0;
+        AllMainGameOverAndLose.SetActive(true);
+        if(_What == true)
+        {
+            // Winner
+            MainWinner.SetActive(true);
+            MainGameOver.SetActive(false);
+
+        }else
+        {
+            // GameOver
+            MainGameOver.SetActive(true);
+            MainWinner.SetActive(false);
+        }
     }
 
     public void Buttons(string itsName)
     {
         if(itsName == "ExitToMenu"){
             SceneManager.LoadScene(0);
+        }else if(itsName == "Return to Menu")
+        {
+            SceneManager.LoadScene(1);
         }
 
     }
 
 
-    public void ModeScreen(bool Mode)
+    public void ModeScreen(int _ModeScreen)
     {
-        fullScreenMode = Mode;
+        if(_ModeScreen == 0)
+        {
+            fullScreenMode  = true;
+
+        }
+        else if(_ModeScreen == 1)
+        {
+            fullScreenMode  = false;
+
+        }
     }
 
     public void SetResolution(int resolutionIndix)
@@ -192,10 +216,13 @@ public class PauseMenu : MonoBehaviour
  
     public void DefaultSettings()
     {
-        SellectQuality(2);
-        SellectDifficultyLevels(0);
-        ModeScreen(true);
+       // ModeScreen(0);
+        NamberQuallity = 0;
+        namber =0;
+        NamberDifficulty = 0;
+        Nam_NamberDifficulty =0;
         VolveAudio.value = 0.5f;
+       QualitySettings.SetQualityLevel(NamberQuallity);
 
     }
 }
