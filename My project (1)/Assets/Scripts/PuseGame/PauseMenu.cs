@@ -169,12 +169,14 @@ public class PauseMenu : MonoBehaviour
         if(_What == true)
         {
             // Winner
+            //SetWinOrGameOver(true)
             MainWinner.SetActive(true);
             MainGameOver.SetActive(false);
 
         }else
         {
             // GameOver
+            //SetWinOrGameOver(false)
             MainGameOver.SetActive(true);
             MainWinner.SetActive(false);
         }
