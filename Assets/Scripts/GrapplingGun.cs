@@ -20,6 +20,7 @@ public class GrapplingGun : MonoBehaviour
     private void Awake()
     {
         lineRenderer = GetComponent<LineRenderer>();
+        lineRenderer.enabled = true;
     }
 
     public void StartGrapple(Vector2 mousePosition)
@@ -35,7 +36,6 @@ public class GrapplingGun : MonoBehaviour
             joint.connectedAnchor = grapplePoint;
 
             float distanceFromPoint = Vector3.Distance(player.position, grapplePoint);
-            Debug.Log($"Start distance: {distanceFromPoint}");
 
             joint.damper = jointDamper;
             joint.spring = jointSpring;
@@ -52,7 +52,7 @@ public class GrapplingGun : MonoBehaviour
     public void DrawGrapplingGunRope()
     {
         if (!joint) return;
-        Debug.Log(Vector3.Distance(player.position, grapplePoint));
+
         lineRenderer.SetPosition(0, gunTip.position);
         lineRenderer.SetPosition(1, grapplePoint);
     }

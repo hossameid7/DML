@@ -17,14 +17,16 @@ public class PlayerLocomotion : MonoBehaviour
 
     public float fallingVelocity;
     public LayerMask groundLayer;
+    public LayerMask jumpPadLayer;
     private float rayCastHeightOffset = 0.25f;
 
     public float jumpHeight = 3f;
     public float gravityIntensity = -15f;
 
     public float moveSpeed = 15f;
-    public float cayoteTiming;
+    public float cayoteTiming = 0.125f;
 
+    public float jumpPadStrength = 10f;
     private void Awake()
     {
         animatorManager = GetComponent<AnimatorManager>();
@@ -40,6 +42,7 @@ public class PlayerLocomotion : MonoBehaviour
         HandleJumpCutting();
         HandleMovement();
         HandleRotation();
+        //HandleJumpPad();
     }
     private void HandleMovement()
     {
@@ -88,7 +91,6 @@ public class PlayerLocomotion : MonoBehaviour
     }
     private void HandleFallingAndLanding()
     {
-        RaycastHit _hit;
         Vector3 rayCastOrigin = transform.position;
         rayCastOrigin.y += rayCastHeightOffset;
 
@@ -119,5 +121,21 @@ public class PlayerLocomotion : MonoBehaviour
         }
         else
             isGrounded = false;
+    }
+
+    private void HandleJumpPad()
+    {
+        Vector3 boxCastOrigin = transform.position;
+        boxCastOrigin.y += rayCastHeightOffset;
+        if (Physics.BoxCast(boxCastOrigin, 
+                            new Vector3(playerCollider.size.x / 2, 0.125f, playerCollider.size.z / 2),
+                            -Vector3.up,
+                            transform.rotation,
+                            0.5f,
+                            jumpPadLayer))
+        {
+            playerRigidbody.velocity.Set(playerRigidbody.velocity.x, 0, playerRigidbody.velocity.z);
+            playerRigidbody.AddForce(new Vector3(0, Mathf.Sqrt(-2 * gravityIntensity * jumpPadStrength), 0), ForceMode.Impulse);
+        }
     }
 }
