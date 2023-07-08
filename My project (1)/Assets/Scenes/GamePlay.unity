@@ -2145,8 +2145,8 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 4814820778871776614}
   - {fileID: 543450652684895905}
+  - {fileID: 4814820778871776614}
   - {fileID: 5729628449350613908}
   m_Father: {fileID: 0}
   m_RootOrder: 8
@@ -5196,7 +5196,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 1
     m_VerticalOverflow: 1
     m_LineSpacing: 1
-  m_Text: 'Score: 0/10'
+  m_Text: 0/5
 --- !u!222 &1713195806
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -5537,7 +5537,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.19607843, g: 0.19607843, b: 0.19607843, a: 1}
+  m_Color: {r: 0, g: 1, b: 0.62120366, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
