@@ -14,11 +14,16 @@ public class PlayerLocomotion : MonoBehaviour
 
     public bool isGrounded;
     public bool isJumping;
+    public bool lookingRight;
 
     public float fallingVelocity;
     public LayerMask groundLayer;
     public LayerMask jumpPadLayer;
     private float rayCastHeightOffset = 0.25f;
+
+    public bool flipX = true;
+    public bool flipY;
+    public bool flipZ;
 
     public float jumpHeight = 3f;
     public float gravityIntensity = -15f;
@@ -47,22 +52,53 @@ public class PlayerLocomotion : MonoBehaviour
     private void HandleMovement()
     {
         moveDirection = playerRigidbody.velocity;
-        moveDirection.x = inputManager.horizontalInput * moveSpeed;
+        moveDirection.z = -inputManager.horizontalInput * moveSpeed;
 
         playerRigidbody.velocity = moveDirection;
+        //playerRigidbody.AddForce(-Vector3.forward * inputManager.horizontalInput * moveSpeed);
     }
 
     private void HandleRotation()
     {
-        Vector3 targetDirection = Vector3.right;
         if (inputManager.horizontalInput == 0)
             return;
 
-        targetDirection *= inputManager.horizontalInput;
+        //if (lookingRight && inputManager.horizontalInput == -1)
+        //    return;
+        //if (!lookingRight && inputManager.horizontalInput == 1)
+        //    return;
+
+        //Vector3 targetDirection = transform.position;
+        //var t = transform.rotation.eulerAngles;
+        //var newRotation = Quaternion.Euler(-t.x, 0, 0);
+        //transform.rotation = newRotation;
+
+        //targetDirection.x = 0;
+        //targetDirection = targetDirection.normalized;
+
+        Vector3 targetDirection = Vector3.forward;
+        targetDirection.z *= -inputManager.horizontalInput;
         Quaternion targetRotation = Quaternion.LookRotation(targetDirection);
 
         transform.rotation = targetRotation;
     }
+
+    //void Flip()
+    //{
+    //    if (mesh == null) return;
+    //    Vector3[] verts = mesh.vertices;
+    //    for (int i = 0; i < verts.Length; i++)
+    //    {
+    //        Vector3 c = verts[i];
+    //        if (flipX) c.x *= -1;
+    //        if (flipY) c.y *= -1;
+    //        if (flipZ) c.z *= -1;
+    //        verts[i] = c;
+    //    }
+
+    //    mesh.vertices = verts;
+    //    if (flipX ^ flipY ^ flipZ) FlipNormals();
+    //}
 
     public void HandleJumping()
     {
