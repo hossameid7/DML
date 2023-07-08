@@ -235,11 +235,13 @@ public class ithis_MainMenu : MonoBehaviour
  
     public void DefaultSettings()
     {
+        ModeScreen(1);
         NamberQuallity = 0;
         namber =0;
         NamberDifficulty = 0;
         Nam_NamberDifficulty =0;
         VolveAudio.value = 0.5f;
+
        QualitySettings.SetQualityLevel(NamberQuallity);
 
     }

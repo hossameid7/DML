@@ -3681,7 +3681,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Window
+  m_Text: Full screan
 --- !u!222 &860458074
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -5827,9 +5827,9 @@ MonoBehaviour:
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: PauseMenu, Assembly-CSharp
-        m_MethodName: ModeScreen
+      - m_Target: {fileID: 71830808}
+        m_TargetAssemblyTypeName: ithis_MainMenu, Assembly-CSharp
+        m_MethodName: SetResolution
         m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -5931,9 +5931,9 @@ MonoBehaviour:
   m_Value: 0
   m_Options:
     m_Options:
-    - m_Text: Window
-      m_Image: {fileID: 0}
     - m_Text: Full screan
+      m_Image: {fileID: 0}
+    - m_Text: Window
       m_Image: {fileID: 0}
   m_OnValueChanged:
     m_PersistentCalls:
