@@ -280,13 +280,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   grappleableLayer:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 4096
   gunTip: {fileID: 3076708764757480065}
   player: {fileID: 805347541464300026}
   maxDistance: 50
-  jointDamper: 0
-  jointSpring: 0
-  jointMassScale: 0
+  jointDamper: 100
+  jointSpring: 100
+  jointMassScale: 1
 --- !u!1001 &911858180379368977
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -424,7 +424,7 @@ Rigidbody:
   serializedVersion: 2
   m_Mass: 1
   m_Drag: 0
-  m_AngularDrag: 0.05
+  m_AngularDrag: 0
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 1
@@ -503,6 +503,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isGrounded: 1
   isJumping: 0
+  lookingRight: 0
   fallingVelocity: 50
   groundLayer:
     serializedVersion: 2
@@ -510,9 +511,12 @@ MonoBehaviour:
   jumpPadLayer:
     serializedVersion: 2
     m_Bits: 0
-  jumpHeight: 4
+  flipX: 1
+  flipY: 0
+  flipZ: 0
+  jumpHeight: 7.5
   gravityIntensity: -10
-  moveSpeed: 7
+  moveSpeed: 10
   cayoteTiming: 0.125
   jumpPadStrength: 10
 --- !u!114 &5536116531439309387

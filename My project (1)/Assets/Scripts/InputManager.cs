@@ -50,11 +50,6 @@ public class InputManager : MonoBehaviour
                 grapplingGun.StartGrapple(mousePosition);
             };
 
-            playerControls.PlayerActions.RMB.canceled += context =>
-            {
-                grapplingGun.StopGrapple();
-            };
-
             playerControls.PlayerActions.RMB.canceled += context => grapplingGun.StopGrapple();
         }
 
