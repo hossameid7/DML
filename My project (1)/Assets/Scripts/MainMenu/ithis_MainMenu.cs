@@ -19,32 +19,24 @@ public class ithis_MainMenu : MonoBehaviour
     public float UseTimeCuli,UseTimeCuliBarLvel;
     public float SppedTurnSmallLoading,SppedBarLevel;
 
+   
     [Header("Main Setting")] 
-    public Dropdown DisplayResolistion;
-    public Vector2 ScreenXAndScreenY;
-
-    
-    [Space(10)] 
+    public AudioListener _audioListener;
     public Slider VolveAudio;
-
-    [Space(10)] 
-    
+    public Dropdown DisplayResolistion;
     private Resolution[] its_Resolution;
-    public Button TheButtonWindow,ButtonFullScreen;
-    public Image TureMark;
+  
     public bool fullScreenMode = true;
     public int NamerModeScreen;
-
-    [Space(15)]
+    
+    [Space(5)]
     public int NamberQuallity;
-    public Button Qu_Low,QuMedium,QuHight;
-    public GameObject QuTrue_Low, QuTrue_Mrdium, QuTrue_Hard;
-
-    [Space(15)]
-    public int NamDifficultyLevels;
-    public Button DL_Easy, DF_Medium, DF_Hard;
-    public GameObject DL_True_Low, DL_True_Mrdium, DL_True_Hard;
-
+    public Text UIWhatQuality;
+    public GameObject NextQuallity,BackQuallity;
+    [Space(5)]
+    public int NamberDifficulty;
+    public GameObject BackDifficulty,NextDifficlty;
+    public Text UIWhatDifficulaty;
 
     // Start is called before the first frame update
     void Start()
@@ -98,99 +90,10 @@ public class ithis_MainMenu : MonoBehaviour
             }
 
         }
-        FunQuality();
+        FunSettings();
     }
    
-    void FunQuality()
-    {
-        AudioListener.volume =  VolveAudio.value;
-
-
-        if (fullScreenMode == true)
-        {
-            Screen.fullScreenMode = FullScreenMode.FullScreenWindow;
-            TureMark.gameObject.SetActive(true);
-            ButtonFullScreen.interactable = false;
-            TheButtonWindow.interactable = true;
-        }
-        else
-        {
-            Screen.fullScreenMode = FullScreenMode.Windowed;
-            TureMark.gameObject.SetActive(false);
-            ButtonFullScreen.interactable = true;
-            TheButtonWindow.interactable = false;
-        }
-
-        // ــــــــــــــــ تحديد الجودة ــــــــــــــــــــــــــ
-        if(NamberQuallity ==0)
-        {
-            Qu_Low.interactable = false;
-            QuMedium.interactable = true;
-            QuHight.interactable = true;
-
-            QuTrue_Low.SetActive(true);
-            QuTrue_Mrdium.SetActive(false);
-            QuTrue_Hard.SetActive(false);
-
-        }
-        else if(NamberQuallity == 1)
-        {
-            Qu_Low.interactable = true;
-            QuMedium.interactable = false;
-            QuHight.interactable = true;
-
-            QuTrue_Low.SetActive(false);
-            QuTrue_Mrdium.SetActive(true);
-            QuTrue_Hard.SetActive(false);
-        }
-        else if (NamberQuallity == 2)
-        {
-            Qu_Low.interactable = true;
-            QuMedium.interactable = true;
-            QuHight.interactable = false;
-
-            QuTrue_Low.SetActive(false);
-            QuTrue_Mrdium.SetActive(false);
-            QuTrue_Hard.SetActive(true);
-        }
-
-        // ـــــــــــــــــــ صعوبة اللعب ـــــــــــــــــــــــ
-        if (NamDifficultyLevels == 0)
-        {
-            DL_Easy.interactable = false;
-            DF_Medium.interactable = true;
-            DF_Hard.interactable = true;
-
-            DL_True_Low.SetActive(true);
-            DL_True_Mrdium.SetActive(false);
-            DL_True_Hard.SetActive(false);
-
-        }
-        else if (NamDifficultyLevels == 1)
-        {
-            DL_Easy.interactable = true;
-            DF_Medium.interactable = false;
-            DF_Hard.interactable = true;
-
-            DL_True_Low.SetActive(false);
-            DL_True_Mrdium.SetActive(true);
-            DL_True_Hard.SetActive(false);
-
-        }
-        else if (NamDifficultyLevels == 2)
-        {
-            DL_Easy.interactable = true;
-            DF_Medium.interactable = true;
-            DF_Hard.interactable = false;
-
-            DL_True_Low.SetActive(false);
-            DL_True_Mrdium.SetActive(false);
-            DL_True_Hard.SetActive(true);
-
-        }
-
-    }
-
+ 
     public void OpenButtinMain(string _NameMain)
     {
         //main destination
@@ -217,24 +120,109 @@ public class ithis_MainMenu : MonoBehaviour
         } 
     }
     
-    //Quality settings
-    public void SellectQuality(int namber)
+    void FunSettings()
     {
-       NamberQuallity = namber;
-       QualitySettings.SetQualityLevel(namber);
-       AudioButton.Play();
+
+
+        AudioListener.volume = VolveAudio.value;
+
+        if (fullScreenMode == true)
+        {
+            Screen.fullScreenMode = FullScreenMode.FullScreenWindow;
+        }
+        else
+        {
+            Screen.fullScreenMode = FullScreenMode.Windowed;         
+        }
+       
+        if(NamberQuallity==0)
+        {
+            NextQuallity.SetActive(true);
+            BackQuallity.SetActive(false);
+            UIWhatQuality.text ="Low";
+
+        }
+        else if(NamberQuallity==1)
+        {
+            NextQuallity.SetActive(true);
+            BackQuallity.SetActive(true);
+            UIWhatQuality.text ="Medium";
+
+        }
+        else if(NamberQuallity==2)
+        {
+             NextQuallity.SetActive(false);
+            BackQuallity.SetActive(true);
+            UIWhatQuality.text ="Hight";
+
+        }
+    
+         if(NamberDifficulty==0)
+        {
+            NextDifficlty.SetActive(true);
+            BackDifficulty.SetActive(false);
+            UIWhatDifficulaty.text ="Easy";
+
+        }
+        else if(NamberDifficulty==1)
+        {
+            NextDifficlty.SetActive(true);
+            BackDifficulty.SetActive(true);
+            UIWhatDifficulaty.text ="Medium";
+
+        }
+        else if(NamberDifficulty==2)
+        {
+           NextDifficlty.SetActive(false);
+            BackDifficulty.SetActive(true);
+            UIWhatDifficulaty.text ="Hard";
+
+        }
+    
     }
 
-    public void SellectDifficultyLevels(int _Sellect)
-    {
-        NamDifficultyLevels = _Sellect;
-        AudioButton.Play();
-    }
    
-    
-    public void ModeScreen(bool Mode)
+    int namber =0;
+    public void SellectQuality(bool Next_Back)
     {
-        fullScreenMode = Mode;
+        if(Next_Back ==  true)
+        {
+            namber ++;
+        }
+        else if(Next_Back ==  false)
+        {
+            namber --;
+        }
+       NamberQuallity = namber;
+       QualitySettings.SetQualityLevel(NamberQuallity);
+
+    }
+    int Nam_NamberDifficulty;
+    public void SellectDifficultyLevels(bool Next_Back)
+    {
+        if(Next_Back ==  true)
+        {
+            Nam_NamberDifficulty ++;
+        }
+        else if(Next_Back ==  false)
+        {
+            Nam_NamberDifficulty --;
+        }
+        NamberDifficulty = Nam_NamberDifficulty;
+    }
+    
+        public void ModeScreen(int _ModeScreen)
+    {
+        if(_ModeScreen == 0)
+        {
+            fullScreenMode  = true;
+
+        }
+        else if(_ModeScreen == 1)
+        {
+            fullScreenMode  = false;
+
+        }
     }
 
     public void SetResolution(int resolutionIndix)
@@ -247,11 +235,12 @@ public class ithis_MainMenu : MonoBehaviour
  
     public void DefaultSettings()
     {
-        SellectQuality(2);
-        SellectDifficultyLevels(0);
-        ModeScreen(true);
+        NamberQuallity = 0;
+        namber =0;
+        NamberDifficulty = 0;
+        Nam_NamberDifficulty =0;
         VolveAudio.value = 0.5f;
-        AudioButton.Play();
+       QualitySettings.SetQualityLevel(NamberQuallity);
 
     }
 
