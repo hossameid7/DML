@@ -8,6 +8,7 @@ public class InputManager : MonoBehaviour
 {
     PlayerControls playerControls;
     PlayerLocomotion playerLocomotion;
+    PlayerManager playerManager;
     AnimatorManager animatorManager;
     GrapplingGun grapplingGun;
 
@@ -21,6 +22,7 @@ public class InputManager : MonoBehaviour
     {
         animatorManager = GetComponent<AnimatorManager>();
         playerLocomotion = GetComponent<PlayerLocomotion>();
+        playerManager = GetComponent<PlayerManager>();
         grapplingGun = GetComponentInChildren<GrapplingGun>();
     }
 
@@ -48,7 +50,12 @@ public class InputManager : MonoBehaviour
             {
                 Vector2 mousePosition = playerControls.PlayerActions.MousePosition.ReadValue<Vector2>();
                 grapplingGun.StartGrapple(mousePosition);
-            };
+                if (!playerManager.firstTimeGrappled)
+                {
+                    playerManager.firstTimeGrappled = true;
+                    playerManager.HandleAdvices();
+                }
+                };
 
             playerControls.PlayerActions.RMB.canceled += context => grapplingGun.StopGrapple();
         }
@@ -69,12 +76,22 @@ public class InputManager : MonoBehaviour
 
     private void HandleMovementInput()
     {
+        if (movementInput.x != 0 && !playerManager.firstTimeMoved)
+        {
+            playerManager.firstTimeMoved = true;
+            playerManager.HandleAdvices();
+        }
         horizontalInput = movementInput.x;
         animatorManager.UpdateAnimatorValues(Mathf.Abs(horizontalInput));
     }
 
     private void HandleJumpingInput()
     {
+        if (jumpInput && !playerManager.firstTimeJumped)
+        {
+            playerManager.firstTimeJumped = true;
+            playerManager.HandleAdvices();
+        }
         if (jumpInput)
         {
             jumpInput = false;
