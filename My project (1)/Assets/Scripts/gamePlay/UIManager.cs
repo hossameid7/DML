@@ -18,7 +18,7 @@ public class UIManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        SetScore("0","10");
+        SetScore("0","3");
     }
 
     // Update is called once per frame
