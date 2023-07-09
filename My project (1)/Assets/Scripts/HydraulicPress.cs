@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class HydraulicPress : MonoBehaviour
 {
-    PauseMenu pauseMenuObject;
+     PauseMenu pauseMenuObject;
 
     public float cycleTime;
     float oneWayCycleTime;
@@ -38,6 +38,7 @@ public class HydraulicPress : MonoBehaviour
         if (collision.gameObject.tag == "Player")
         {
             pauseMenuObject.SetWinOrGameOver(false);
+           
         }
     }
 }

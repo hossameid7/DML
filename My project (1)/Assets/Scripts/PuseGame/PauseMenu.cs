@@ -7,7 +7,7 @@ public class PauseMenu : MonoBehaviour
 {
     public bool isActive = false;
 
-
+    public GameObject ObjectMainMenu;
     [Header("Settings")]
     public AudioListener _audioListener;
     public Slider VolveAudio;
@@ -62,6 +62,7 @@ public class PauseMenu : MonoBehaviour
     {
         if(Input.GetKeyDown(KeyCode.Escape)){
             PauseGame();
+            
         }
         FunSettings();
     }
@@ -130,6 +131,7 @@ public class PauseMenu : MonoBehaviour
         isActive = !isActive;
         Time.timeScale =(isActive == true)? 0: 1;
         _audioListener.enabled = isActive;
+        ObjectMainMenu.SetActive(isActive);
     }
    
     int namber =0;
@@ -164,7 +166,6 @@ public class PauseMenu : MonoBehaviour
     
     public void SetWinOrGameOver( bool _What)
     {
-        Time.timeScale =0;
         AllMainGameOverAndLose.SetActive(true);
         if(_What == true)
         {
@@ -180,6 +181,7 @@ public class PauseMenu : MonoBehaviour
             MainGameOver.SetActive(true);
             MainWinner.SetActive(false);
         }
+        Time.timeScale =0;
     }
 
     public void Buttons(string itsName)
