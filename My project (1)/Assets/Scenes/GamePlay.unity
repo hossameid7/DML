@@ -41210,7 +41210,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c39f9502f6cff014ea23ccdc7cac5772, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cycleTime: 2.75
+  cycleTime: 3
   maxDistance: 17.5
 --- !u!64 &7431551893242777277
 MeshCollider:
@@ -48584,7 +48584,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c39f9502f6cff014ea23ccdc7cac5772, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cycleTime: 2.5
+  cycleTime: 3
   maxDistance: 17.5
 --- !u!4 &8927684181368527383
 Transform:
