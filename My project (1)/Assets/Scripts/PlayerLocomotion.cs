@@ -39,7 +39,6 @@ public class PlayerLocomotion : MonoBehaviour
         playerCollider = GetComponent<BoxCollider>();
 
         pauseMenuObject = FindObjectOfType<PauseMenu>();
-        Debug.Log(pauseMenuObject.name);
     }
 
     public void HandleAllMovement()
