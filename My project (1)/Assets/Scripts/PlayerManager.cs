@@ -48,6 +48,8 @@ public class PlayerManager : MonoBehaviour
 
     public void HandleAdvices()
     {
+        if (firstTimeMoved && firstTimeJumped && firstTimeGrappled) return;
+
         if (firstTimeMoved) Destroy(movementAdvice);
 
         if (firstTimeJumped) Destroy(jumpingAdvice);
