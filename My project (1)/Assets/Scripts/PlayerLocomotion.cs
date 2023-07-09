@@ -6,7 +6,8 @@ public class PlayerLocomotion : MonoBehaviour
 {
     AnimatorManager animatorManager;
     PlayerManager playerManager;
-    InputManager inputManager; 
+    InputManager inputManager;
+    PauseMenu pauseMenuObject;
 
     Vector3 moveDirection;
     Rigidbody playerRigidbody;
@@ -21,14 +22,11 @@ public class PlayerLocomotion : MonoBehaviour
     public LayerMask jumpPadLayer;
     private float rayCastHeightOffset = 0.25f;
 
-    public bool flipX = true;
-    public bool flipY;
-    public bool flipZ;
-
     public float jumpHeight = 3f;
     public float gravityIntensity = -15f;
 
     public float moveSpeed = 15f;
+    public float ledgeHeight = 0.2f;
     public float cayoteTiming = 0.125f;
 
     public float jumpPadStrength = 10f;
@@ -39,6 +37,9 @@ public class PlayerLocomotion : MonoBehaviour
         playerManager = GetComponent<PlayerManager>();
         playerRigidbody = GetComponent<Rigidbody>();
         playerCollider = GetComponent<BoxCollider>();
+
+        pauseMenuObject = FindObjectOfType<PauseMenu>();
+        Debug.Log(pauseMenuObject.name);
     }
 
     public void HandleAllMovement()
@@ -96,6 +97,7 @@ public class PlayerLocomotion : MonoBehaviour
     }
     private void HandleFallingAndLanding()
     {
+        RaycastHit _hit;
         Vector3 rayCastOrigin = transform.position;
         rayCastOrigin.y += rayCastHeightOffset;
 
@@ -113,6 +115,7 @@ public class PlayerLocomotion : MonoBehaviour
         if (Physics.BoxCast(rayCastOrigin,
                             new Vector3(playerCollider.size.x / 2, 0.125f, playerCollider.size.z / 2 + cayoteHalfExtent),
                             -Vector3.up,
+                            out _hit,
                             transform.rotation,
                             0.5f,
                             groundLayer))
@@ -123,6 +126,8 @@ public class PlayerLocomotion : MonoBehaviour
             }
 
             isGrounded = true;
+            if (_hit.collider.gameObject.tag == "Finish")
+                pauseMenuObject.SetWinOrGameOver(true);
         }
         else
             isGrounded = false;

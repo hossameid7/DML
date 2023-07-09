@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class HydraulicPress : MonoBehaviour
 {
+    PauseMenu pauseMenuObject;
+
     public float cycleTime;
     float oneWayCycleTime;
     public float maxDistance;
@@ -13,6 +15,8 @@ public class HydraulicPress : MonoBehaviour
 
     private void Awake()
     {
+        pauseMenuObject = FindObjectOfType<PauseMenu>();
+
         startPosition = transform.position;
         endPosition = transform.position + -Vector3.up * maxDistance;
         destination = endPosition;
@@ -27,5 +31,13 @@ public class HydraulicPress : MonoBehaviour
             destination = endPosition;
 
         transform.position = Vector3.MoveTowards(transform.position, destination,  maxDistance / oneWayCycleTime * Time.deltaTime);
+    }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject.tag == "Player")
+        {
+            pauseMenuObject.SetWinOrGameOver(false);
+        }
     }
 }
