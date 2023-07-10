@@ -5,6 +5,7 @@ using System.Collections.Generic;
 
 public class PauseMenu : MonoBehaviour
 {
+    public static PauseMenu _this;
     public bool isActive = false;
 
     public GameObject ObjectMainMenu;
@@ -30,10 +31,16 @@ public class PauseMenu : MonoBehaviour
     public GameObject AllMainGameOverAndLose;
     public GameObject MainGameOver,MainWinner;
 
+    [Header("UIGamePlay")]
+    public int AllMnyEnemy =4;
+    public Text UIManyKill;
+
+     
+
     void Start()
     {
 
-
+        _this = this;
         Time.timeScale = 1;
        its_Resolution = Screen.resolutions;
        DisplayResolistion.ClearOptions();
@@ -65,6 +72,7 @@ public class PauseMenu : MonoBehaviour
             
         }
         FunSettings();
+        
     }
 
     void FunSettings()
@@ -126,6 +134,11 @@ public class PauseMenu : MonoBehaviour
 
         }
     
+
+        // UI
+        UIManyKill.text = "Score : " + Player.I.playerData.score + " / " + AllMnyEnemy;
+
+
     }
     public void PauseGame(){
         isActive = !isActive;
