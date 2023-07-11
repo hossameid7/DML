@@ -94,6 +94,11 @@ public class PlayerManager : MonoBehaviour
 
     public void HandleAdvices()
     {
+        if (passedGrappleTrigger && firstTimeGrappled)
+        {
+            grapplingAdvice.enabled = false;
+            adviceBox.enabled = false;
+        }
         if (firstTimeMoved && firstTimeJumped && firstTimeGrappled) return;
 
         if (firstTimeMoved) Destroy(movementAdvice);
@@ -106,12 +111,6 @@ public class PlayerManager : MonoBehaviour
         {
             adviceBox.enabled = true;
             grapplingAdvice.enabled = true;
-        }
-
-        if (passedGrappleTrigger && firstTimeGrappled) 
-        {
-            Destroy(grapplingAdvice);
-            Destroy(adviceBox);
         }
     }
 

@@ -125,8 +125,6 @@ public class PlayerLocomotion : MonoBehaviour
             }
 
             isGrounded = true;
-            if (_hit.collider.gameObject.tag == "Finish")
-                pauseMenuObject.SetWinOrGameOver(true);
         }
         else
             isGrounded = false;

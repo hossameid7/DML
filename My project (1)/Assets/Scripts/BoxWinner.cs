@@ -5,11 +5,14 @@ using UnityEngine;
 public class BoxWinner : MonoBehaviour
 {
    public PauseMenu _ScriptPuseMenu;
+   public Player player;
 
-   private void OnTriggerEnter(Collider other) {
+
+    private void OnTriggerEnter(Collider other) {
       if (other.gameObject.tag == "Player")
         {
-            _ScriptPuseMenu.SetWinOrGameOver(true);
+            if (player.playerData.score == 4)
+                _ScriptPuseMenu.SetWinOrGameOver(true);
            
         }
    }

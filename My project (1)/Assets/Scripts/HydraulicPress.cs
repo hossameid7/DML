@@ -38,7 +38,6 @@ public class HydraulicPress : MonoBehaviour
         if (collision.gameObject.tag == "Player")
         {
             pauseMenuObject.SetWinOrGameOver(false);
-           
         }
     }
 }

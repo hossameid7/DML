@@ -54,6 +54,7 @@ public class InputManager : MonoBehaviour
                 {
                     playerManager.firstTimeGrappled = true;
                     playerManager.HandleAdvices();
+                    Debug.Log("start");
                 }
                 };
 
